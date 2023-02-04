@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Travel List</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/travelList.css}"/>
+</head>
+<body>
+<div id=header th:replace="common/header.html"></div>
+	<h1 id=name1>제주 관광지 목록</h1>
+	
+	<!-- <h1 th:text="${#authentication.principal}"></h1> -->
+
+ 	<table id=table align="center" border="1">
+		<tr>
+			<th>여행지 번호</th>
+			<th>여행지 이름</th>
+			<th>여행지 주소</th>
+		</tr>
+		<tr id=tr th:each="travel : ${ pageTravelList }">
+			<td th:text="${ travel.placeNo }"></td>
+			<td id=td><a id=pn th:href="'../travel/travelDetail/' + ${ travel.placeNo } ">[[${travel.placeName}]]</a></td>
+			<td th:text="${ travel.placeAddress }"></td>
+		</tr>
+	</table>
+	
+	<!-- 페이징 -->
+	<div th:replace="travel/paging.html"></div>
+	
+	<!-- 검색 폼 -->
+	<div class="search-area" align="center">
+		<form id="loginForm" action="/travel/travelList" method="get" style="display: inline-block">
+				<select th:with="searchCondition = ${selectCriteria.searchCondition}"
+					id="searchCondition" name="searchCondition">
+					<option value="placeName" th:selected="${ searchCondition } == 'placeName'">관광지명</option>
+					<option value="placeAddress" th:selected="${ searchCondition } == 'placeAddress'">관광지 주소</option>					
+				</select> 
+			<input type="hidden" name="currentPage" value="1">
+			<input type="search" id="name" name="searchValue" th:value="${selectCriteria.searchValue}">
+			<button id=searchButton class="btn btn-bs" type="submit">검색하기</button>
+		</form>
+	</div>
+	<th:block sec:authorize="hasRole('관리자')"> <!-- 권한이 있어야 보인다.  -->
+		<div id=button>
+			<button id=button1 onclick="location.href='/travel/travelModify'">관광지 수정</button>
+			<button id=button2 onclick="location.href='/travel/travelRegist'">관광지 추가</button>
+		</div>
+	</th:block>
+	<div id=footer th:replace="common/footer.html"></div>
+</body>
+</html>

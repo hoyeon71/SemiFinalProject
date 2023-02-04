@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+        }
+        .loginTitle{
+            margin-top: 10%;
+            order: 1;
+        }
+        .loginForm{
+            order:2;
+            margin: auto;
+        }
+    </style>
+</head>
+
+    <div class="container">
+        <div class="loginTitle">
+            <h1 align="center">로 그 인</h1>
+            <hr>
+        </div>
+        <div class="loginForm">
+            <form action="/member/login" method="post" id="LoginForm">
+                <label style="font-size: 30px;" align="center" >아이디 : </label>
+                <input type="text" style="width:215px; height: 30px;" name="username"/>
+                <br><br>
+
+                <label style="font-size: 30px;">비밀번호 : </label>
+                <input type="password" style="width:200px; height: 30px;" name="password"/>
+                <br><br>
+
+                <button type="submit" style="font-size: 20px;">로그인</button>
+                <button type="button" style="font-size: 20px;" onclick="location.href='/'">취소</button>
+                <button type="button" style="font-size: 20px; float:right;" onclick="location.href='join'">회원가입</button>
+            </form>
+        </div>  
+    </div>
+
+	
+	<div class="container">
+  <h5>아이디나 비밀번호를 잊어버리셨나요?</h5>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#idFindigModal">아이디 찾기</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#pwdFindigModal">비밀번호 찾기</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="idFindigModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">아이디 찾기</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/member/findId" method="post" id="findIdForm">
+            <p>가입할 때 입력한 이메일 주소를 입력해주세요.</p>
+            <label>이메일</label>
+            <input type="email" name="email"></input>
+            <button type="submit">제출</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="pwdFindigModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">아이디 찾기</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/member/findPwd" method="post" id="findPwdForm">
+            <p>가입할 때 입력한 이메일 주소와 계정명을 입력해주세요.</p>
+            <label>이메일</label>
+            <input type="email" name="email"></input>
+            <label>계정명</label>
+            <input type="text" name="id"></input>
+            <button type="submit">제출</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+	
+    <script>
+    	// 아이디 찾기 결과 알려주는 alert 
+	    let idFindResult = '[[${idFindResult}]]';
+		console.log("idFindResult 내용물 : " + idFindResult);
+
+		if(idFindResult == "success"){
+	        alert("입력하신 회원님의 이메일 주소로 아이디를 발송하였습니다.");
+	    }else if(idFindResult == "fail"){
+	    	alert("입력하신 이메일 주소에 해당하는 계정 정보가 존재하지 않습니다.")
+	    }
+		
+		// 비밀번호 찾기 결과 알려주는 alert
+	    let pwdFindResult = '[[${pwdFindResult}]]';
+		console.log("pwdFindResult 내용물 : " + pwdFindResult);
+
+		if(pwdFindResult == "success"){
+	        alert("입력하신 회원님의 이메일 주소로 임시 비밀번호를 발송하였습니다.");
+	    }else if(pwdFindResult == "fail"){
+	    	alert("입력하신 정보에 해당하는 계정 정보가 존재하지 않습니다.")
+	    }
+		
+		let loginResult = new URLSearchParams(location.search);
+		const errorMsgName = loginResult.get('errorMsgName');
+		const times = loginResult.get('times');
+		const name = loginResult.get('name');
+		console.log("errorMsgName 내용물 : " + errorMsgName);
+		console.log("times 내용물 : " + times);
+		console.log("name 내용물 : " + name);
+		
+		if(errorMsgName === "IncorrectId"){
+			alert("아이디 또는 비밀번호가 잘못되었습니다.");
+		}else if(errorMsgName === "IncorrectPwd"){
+			alert(name + "계정 로그인 연속 실패가 " + times + "회가 되었습니다.");
+		}else if(errorMsgName === "FrozenAccount"){
+			alert("해당 계정은 정지되었습니다. 비밀번호 찾기를 통해 비밀번호를 변경해주세요.");
+			location.href="logout";
+		}else if(errorMsgName === "DeletedAccount"){
+			alert("해당 계정은 삭제된 계정입니다. 관리자에게 문의하세요.");
+		}
+		
+    	// 회원 탈퇴 결과를 알려주는 alert 
+	    let deleteResult = '[[${deleteResult}]]';
+
+		if(deleteResult == "success"){
+	        alert("회원 탈퇴가 정상적으로 이루어졌습니다.");
+	    }
+    </script>
+</body>
+</html>

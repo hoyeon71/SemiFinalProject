@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Travel Detail</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/travelDetail.css}"/>
+</head>
+<body>
+<div id=header th:replace="common/header.html"></div>
+	<div id=name>
+    	<h1 th:text="${ travel.placeName }"></h1>
+    </div>
+     <div id=imgbox>
+     	<img id=img th:src="@{ ${ image } }" height=100%; width=100%; >
+    </div> 
+     <div id=db th:each="td : ${ travel }">
+			<h1 id=dbpn th:text="${ td.placeName } + ' 소개글'"></h1> <br>
+			<h2 id=dbpd th:text="${ td.placeDesc }"></h2>
+    </div>
+	<div id="map"></div>
+
+<!-- 지도 api  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=92d281898064ebc19c5d418ddf891721&libraries=services"></script>
+<script th:inline="javascript">
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = {
+				    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	    			level: 3 // 지도의 확대 레벨
+				};  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch('[[${travel.placeAddress}]]', function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:200px;text-align:center; padding:6px 0;">[[${travel.placeName}]]</div>'
+	        });
+	        infowindow.open(map, marker);
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});  
+</script>
+	<th:block sec:authorize="hasRole('관리자')"> <!-- 권한이 있어야 보인다.  -->
+      <div>
+        <form th:action="@{'/travel/travelDetail/' + ${travel.placeNo}}" method="post" id="placedelete">
+           <button id="delete" onclick="alert('관광지가 삭제되었습니다')">삭제</button>
+        </form>
+     </div>
+</th:block>
+</body>
+</html>

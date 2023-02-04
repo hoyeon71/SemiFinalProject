@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+#name1 {
+	text-align: center;
+	font-size: 45px;
+	font-family: 'Domine', serif;
+	text-align: center;
+}
+
+#label1 {
+	font-weight: bolder;
+	font-size: 30px;
+	font-family: 'Domine', serif;
+}
+
+#label2 {
+	font-weight: bolder;
+	font-size: 30px;
+	font-family: 'Domine', serif;
+	
+}
+
+#label3 {
+	font-weight: bolder;
+	font-size: 30px;
+	font-family: 'Domine', serif;
+}
+
+#label4 {
+	font-weight: bolder;
+	font-size: 30px;
+	font-family: 'Domine', serif;
+}
+
+#submit {
+	font-weight: bolder;
+	font-size: 40px;
+	font-family: 'Domine', serif;
+	background-color: green;
+	color: white;
+	}
+	
+#input1 {
+	width: 250px;
+	height: 35px;
+}
+
+#input2 {
+	width: 300px;
+	height: 35px;
+}
+
+#input3 {
+	width: 400px;
+	height: 40px;
+}
+
+#select {
+	width: 60px;
+	height: 40px;
+	font-size: 25px;
+	font-weight: bolder;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>bear</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet" />
+	<!--  <link th:href="@{staic 이후의 경로}" rel="stylesheet" /> 기본 형식 -->
+<style>
+</style>
+    <title>Jeju is a bear</title>
+</head>
+<body>
+
+    <h1 id="title">jeju is a bear</h1>
+
+	<!-- 헤더 회원가입/로그인 버튼 -->
+    <div class="button">
+        <th:block sec:authorize="isAnonymous()">
+        <a><button type="button" id="button-join" onclick="location.href='/member/join'">join</button></a>&nbsp;
+        <a><button type="button" id="button-login" onclick="location.href='/member/login'">login</button></a>&nbsp;
+        </th:block>
+        
+        <th:block sec:authorize="isAuthenticated()">
+        	<button type="button" id="button-logout" onclick="location.href='/member/logout'">logout</button>&nbsp;
+        </th:block>
+    </div>
+
+    <br/>
+    <div class="nav">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&display=swap" rel="stylesheet">
+        <a th:href="@{notice/noticeList}"><button type="button" id="nav01">notice</button></a>&nbsp;&nbsp;
+        <a th:href="@{'mate/mate_main'}"><button type="button" id="nav02">matching</button></a>&nbsp;&nbsp;
+        <button onclick="location.href='../travel/travelList'" id="nav03">travel</button></a>&nbsp;&nbsp;
+        <a th:href="@{travelreview/travelreview}"><button type="button" id="nav04">review</button></a>&nbsp;&nbsp;
+        <a th:href="@{mypage}"><button type="button" id="nav05">my page</button></a>&nbsp;&nbsp;
+    </div>
+	 
+<div class="slidebox">
+	<input type="radio" name="slide" id="slide01" checked>
+	<input type="radio" name="slide" id="slide02">
+	<input type="radio" name="slide" id="slide03">
+	<input type="radio" name="slide" id="slide04">
+	<ul class="slidelist">
+		<li class="slideitem">
+			<a href="http://localhost:8333/travel/travelDetail/58"><img src="images/구름비낭.jpg" alt="구름비낭"/></a>
+		</li>
+		<li class="slideitem">
+			<a href="http://localhost:8333/travel/travelDetail/55"><img src="images/곁겹.jpg" alt="곁겹"/></a>
+		</li>
+		<li class="slideitem">
+			<a href="http://localhost:8333/travel/travelDetail/88"><img src="images/올레펜션.jpg" alt="올레펜션"/></a>
+		</li>
+		<li class="slideitem">
+			<a href="http://localhost:8333/travelreview/reviewpage/13"><img src="images/한라꽃방.jpg" alt="한라꽃방"/></a>
+		</li>
+		
+	</ul>
+	<div class="slide-control">
+		<div class="control01">
+			<label for="slide04" class="prev"></label>
+			<label for="slide02" class="next"></label>
+		</div>
+		<div class="control02">
+			<label for="slide01" class="prev"></label>
+			<label for="slide03" class="next"></label>
+		</div>
+		<div class="control03">
+			<label for="slide02" class="prev"></label>
+			<label for="slide04" class="next"></label>
+		</div>
+		<div class="control04">
+			<label for="slide03" class="prev"></label>
+			<label for="slide01" class="next"></label>
+		</div>
+	</div>
+</div>
+	 
+	  <br/>
+
+<div class="slidebox">
+	<input type="radio" name="slide" id="slide01" checked>
+	<input type="radio" name="slide" id="slide02">
+	<input type="radio" name="slide" id="slide03">
+	<input type="radio" name="slide" id="slide04">
+	<ul class="slidelist">
+		<li class="slideitem">
+			<a href="http://localhost:8333/travel/travelDetail/58"><img src="images/구름비낭.jpg" alt="구름비낭"/></a>
+		</li>
+		<li class="slideitem">
+			<a href="http://localhost:8333/travel/travelDetail/55"><img src="images/곁겹.jpg" alt="곁겹"/></a>
+		</li>
+		<li class="slideitem">
+			<a href="http://localhost:8333/travel/travelDetail/88"><img src="images/올레펜션.jpg" alt="올레펜션"/></a>
+		</li>
+		<li class="slideitem">
+			<a href="http://localhost:8333/travelreview/reviewpage/13"><img src="images/한라꽃방.jpg" alt="한라꽃방"/></a>
+		</li>
+		
+	</ul>
+	<div class="slide-control">
+		<div class="control01">
+			<label for="slide04" class="prev"></label>
+			<label for="slide02" class="next"></label>
+		</div>
+		<div class="control02">
+			<label for="slide01" class="prev"></label>
+			<label for="slide03" class="next"></label>
+		</div>
+		<div class="control03">
+			<label for="slide02" class="prev"></label>
+			<label for="slide04" class="next"></label>
+		</div>
+		<div class="control04">
+			<label for="slide03" class="prev"></label>
+			<label for="slide01" class="next"></label>
+		</div>
+	</div>
+</div>
+
+    <div class="widget">
+        <div class="weather">
+            <iframe src="https://forecast.io/embed/#lat=33.5007&lon=126.5288&name=제주&color=#ffc261&font=&units=si"></iframe>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+<br/>
+<br/>
+<br/>
+    <footer>
+    <p> 2022. JejuisaBear all rights reserved.</p>
+    <br/>
+        <a th:href="@{main/privacy}"><button type="button">개인정보처리방침</button></a>&nbsp;
+        <a th:href="@{main/tos}"><button type="button">이용약관</button></a>&nbsp;
+    </footer>
+        <br>
+</body>
+</html>

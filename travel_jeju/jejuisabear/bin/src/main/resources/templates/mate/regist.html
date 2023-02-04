@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{ /css/mate_regist.css }" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h3 align="center">메이트 모집 신청하기</h3>
+	<form action="/mate/regist" method="post" align="left" id="board-search">		
+		<label>여행지 장소 : </label>
+		<select name="matePlace" id="matePlace">
+		</select><br>
+		<label>내용 : </label><textarea name="mateContent" cols="50" rows="8"></textarea><br>
+		<label>여행 시간 : </label><input type="number" name="mateTime" min="1"><br>
+		<label>여행 날짜 : </label><input type="date" name="mateDate"><br>
+		<label>여행 비용 : </label><input type="number" name="mateCharge" min="1"><br>
+		<label>여행 인원 : </label>
+		<select name="mateMember">			
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+		</select><br>
+		<input type="submit" value="전송">
+		<input type="hidden" name="mapNo" id="mapNo">
+		<input type="hidden" name="mateViews" value="0">
+		<input type="hidden" name="nickName" th:value="${#authentication.principal.Username}">
+	</form>	
+	
+	<script>
+      function selectMateList(){
+  	   $.ajax({
+             url: "/mate/mateList",
+             success: function(data){
+                const $matePlace = document.querySelector("#matePlace");
+                const $mapNo = document.querySelector("#mapNo");
+                
+                
+                for(let index in data){
+               	   $option = document.createElement("option")
+                   $option.value = data[index].markerName;
+                   $option.textContent = data[index].markerName;
+                                                         
+                   $matePlace.appendChild($option);
+                   
+                   
+                }                                   
+             },
+             error: function(error){
+               console.log(error);              
+             }
+          })
+      };
+      selectMateList();
+      
+      $("#matePlace").change(function(){
+    	  const $matePlace = document.querySelector("#matePlace");
+          const $mapNo = document.getElementById("mapNo");
+    	  
+         if($matePlace.value == "성산일출봉"){
+        	  $mapNo.value = 1; 
+          } else if($matePlace.value == "두산봉"){
+        	  $mapNo.value = 2;
+          } else if($matePlace.value == "섭지코지"){
+        	  $mapNo.value = 3;
+          } else if($matePlace.value == "빛의벙커"){
+        	  $mapNo.value = 4;
+          } else if($matePlace.value == "광치기해변"){
+        	  $mapNo.value = 5;
+          } else if($matePlace.value == "아쿠아플라넷"){
+        	  $mapNo.value = 6;
+          } else if($matePlace.value == "신양섭지해변"){
+        	  $mapNo.value = 7;
+          } else if($matePlace.value == "혼인지"){
+        	  $mapNo.value = 8;
+          }
+          
+          console.log($mapNo.value);
+      });
+      
+   </script>
+</body>
+</html>

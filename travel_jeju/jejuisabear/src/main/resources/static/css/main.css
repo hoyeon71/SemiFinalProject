@@ -1,0 +1,155 @@
+@charset "UTF-8";
+        html{
+            background:url("/images/한라산2.jpg");
+            position: relative;
+            background-size: cover;
+            background-attachment: fixed;  
+        }
+
+        #title {
+            font-family: 'Domine', serif;
+            text-align: center;
+            font-style: italic;
+            margin-top: 50px;
+            font-size: 60px;
+            color: blanchedalmond;
+            text-shadow: 2px 4px 2px gray;                                                                      
+        }
+
+        .button {
+            text-align : right;
+            margin: -50px 20px 20px 200px;
+        }
+        
+        #button-join, #button-login/*, #button-logout*/ {
+            font-family: 'Domine', serif;
+            background-color:#EBFBFF;
+            border:none;
+            border-radius:10px;
+            box-shadow: 0px 0px 2px 2px #EBFBFF;
+            padding: 10px;
+            min-width: 30px;
+            min-height: 30px;
+            color: #AECDFF;
+        }
+ 
+        .nav {
+            text-align: center;
+            margin: 50px 20px 50px 50px;
+        }
+
+        #nav01, #nav02, #nav03, #nav04, #nav05 {
+            font-family: 'Domine', serif;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 100px;
+            font-size: 35px;
+            color: #AECDFF;
+
+            text-shadow: 2px 3px 2px #6E9FED;
+        }
+
+        .widget {
+            margin-top:30px;
+            
+            width: 900px;
+
+            border-radius: 10px;
+            background-color: rgba(255,255,192,0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 2px 7px 15px 8px rgba(194, 190, 190, 0.3);
+            
+            margin-left: auto; margin-right: auto;
+            
+        }
+        
+        .weather iframe,
+        .right-weather iframe,
+        .left-weather iframe {
+            display: block;
+            border: 0;
+            width: 750px;
+            height: 220px;
+        }
+
+        #word01 {
+            font-family: 'Domine', serif;
+            text-align: center;
+            font-style: italic;
+            font-size: 25px;
+            padding-top: -10px;
+            color: blanchedalmond;
+
+            text-shadow: 2px 4px 2px gray;
+        }
+
+        .best-places, .best-review {
+            text-align: center;
+            margin: auto;
+            width: 1700px;
+            height: 450px;
+            margin-top: -40px;
+            
+            border-radius: 10px;
+            background-color: rgba(255,255,192,0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 2px 7px 15px 8px rgba(194, 190, 190, 0.3);
+        }
+
+        #recommended, #review {
+            font-family: 'Domine', serif;
+            text-align: center;
+            font-style: italic;
+            font-size: 35px;
+            padding-top: 20px;
+            color: blanchedalmond;
+
+            text-shadow: 2px 4px 2px gray;
+        }
+
+        .image01 img, .image02 img {
+            position: relative;
+            margin: 10px auto auto 20px;
+            text-align: center;
+
+            width: 500px;
+            height: 300px;
+        }
+
+        footer {
+            text-align: center;
+            /* position: absolute; */
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        
+
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
+  
+
+.slidebox {max-width:900px;margin:auto;position:relative;}
+.slidebox .slidelist {position:relative;white-space:nowrap;font-size:0;overflow:hidden;}
+.slidebox .slidelist .slideitem {position:relative;display:inline-block;vertical-align:middle;background-color:#fff;width:100%;transition:all 1s;}
+.slidebox .slidelist .slideitem > a {display:block;width:auto;position:relative;}
+.slidebox .slidelist .slideitem > a img {max-width:900px;}
+
+.slidebox .slide-control [class*="control"] label {position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:20px;border-radius:50%;cursor:pointer;}
+.slidebox .slide-control [class*="control"] label.prev {left:-50px;background:#333 url('/images/left-arrow.png') center center / 50% no-repeat;}
+.slidebox .slide-control [class*="control"] label.next {right:-50px;background:#333 url('/images/right-arrow.png') center center / 50% no-repeat;}
+
+[name="slide"] {display:none;}
+#slide01:checked ~ .slidelist .slideitem {left:0;}
+#slide02:checked ~ .slidelist .slideitem {left:-100%;}
+#slide03:checked ~ .slidelist .slideitem {left:-200%;}
+#slide04:checked ~ .slidelist .slideitem {left:-300%;}
+
+.slide-control [class*="control"] {display:none;}
+#slide01:checked ~ .slide-control .control01 {display:block;}
+#slide02:checked ~ .slide-control .control02 {display:block;}
+#slide03:checked ~ .slide-control .control03 {display:block;}
+#slide04:checked ~ .slide-control .control04 {display:block;}
+

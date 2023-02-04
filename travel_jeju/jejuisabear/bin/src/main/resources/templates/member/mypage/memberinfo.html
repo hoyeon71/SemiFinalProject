@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tyhmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이 페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/travelDetail.css}"/>
+</head>
+<body>
+    <div class="container">
+        <div class="mypageHeader">
+            <h1 align="center">마  이  페  이  지</h1>
+            <hr>
+        </div>
+        <div class="navBar">
+            <button>회원정보수정</button>
+            <button>접속이력확인</button>
+            <button>내가 쓴 게시물</button>
+            <button>매칭 내역</button>
+            <button>회원 탈퇴</button>
+
+
+        </div>
+
+        <div class="Content">
+            <form>
+                <div class="floatBox">
+                    <label style="font-size: 20px;">비밀번호 : </label>
+                    <input type="password" style="width:200px; height: 20px; margin-right: 10px;"/>
+                    <p style="font-size: 8px; text-decoration: underline;">영문, 숫자만 혼합하여 8자리 이상으로 입력하세요.</p>
+                </div>
+                <br>
+
+                <label style="font-size: 20px;">비밀번호확인 : </label>
+                <input type="password" style="width:200px; height: 20px;"/>
+                <br><br>
+
+                <label style="font-size: 20px;">닉네임 : </label>
+                <input type="password" style="width:200px; height: 20px;"/>
+                <button>닉네임 중복 체크</button>
+                <br><br>
+
+                <label style="font-size: 20px;">연락처 : </label>
+                <input type="password" style="width:200px; height: 20px;"/>
+                <br><br>
+
+                <label style="font-size: 20px;">이메일 : </label>
+                <input type="password" style="width:200px; height: 20px;"/>
+                <br><br>
+
+                <button type="submit" style="font-size: 20px;">정보수정</button>
+                <button style="font-size: 20px;">취소</button>
+            </form>
+        </div>  
+    </div>
+
+    <script>
+
+    </script>
+</body>
+</html>

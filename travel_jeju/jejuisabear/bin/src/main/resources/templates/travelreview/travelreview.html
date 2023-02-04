@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/travelreview.css}" />
+</head>
+<body>
+	<div id="header" th:replace="common/header.html"></div>
+    <div class="main">
+<!--         <p>
+            여행지 선택
+            <select>
+                <option value="travel">=== 관광지명 ===</option>
+            </select>
+        </p> -->
+            <table>
+                    <tr id="tr1">
+                        <th>No.</th>
+                      	<th>관광지명</th>
+                        <th>제목</th>
+                        <th>닉네임</th>
+                    </tr>
+                    
+                    <!-- 제목리스트 클릭시 페이지 이동 -->
+	                <tr id="tr2" th:each="reviewList : ${ reviewList }">
+	                    <td>[[${reviewList.revNo}]]</td>
+	                    <td>[[${reviewList.placeName}]]</td>
+	                    <td id="td3"><a th:href="@{'/travelreview/reviewpage/' + ${reviewList.revNo}}">[[${reviewList.revTitle}]]</a></td>
+	                    <td>[[${reviewList.userNickname}]]</td>
+	                </tr>
+            </table>
+        <div th:replace="travelreview/paging.html"></div>
+        	<!-- 검색 폼 -->
+		<div class="search-area" align="center">
+			<form id="loginForm" action="/travelreview/travelreview" method="get" style="display: inline-block">
+					<select th:with="searchCondition = ${selectCriteria.searchCondition}"
+						id="searchCondition" name="searchCondition">
+						<option value="placeName" th:selected="${ searchCondition } == 'placeName'">관광지명</option>
+					</select> 
+				<input type="hidden" name="currentPage" value="1">
+				<input type="search" id="name" name="searchValue" th:value="${selectCriteria.searchValue}">
+				<button class="btn btn-bs" type="submit">검색하기</button>
+			</form>
+		</div>
+		
+		<!-- 로그인 헀을 경우 글쓰기 버튼 활성화 sec:authorize="isAuthenticated()" -->
+		<th:block sec:authorize="isAuthenticated()">
+        <a th:href="@{../travelreview/reviewboard}"><button type="button" id="bt1">글쓰기</button></a>
+        </th:block>
+    </div>
+</body>
+</html>

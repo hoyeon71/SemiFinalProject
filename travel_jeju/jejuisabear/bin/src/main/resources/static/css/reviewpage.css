@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+        body {
+            font-size: 120%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        #reviewpage {
+        	margin-top: 10%;
+        	text-align: center;
+        }
+        
+        #content {
+        	white-space: pre-line
+        }
+        
+        #nickname {
+        	text-align: right;
+        }
+        
+        button {
+        	margin-top : 20px;
+        	border: 1px #a39485 solid;
+            box-shadow: 0 2px 5px rgba(0,0,0,.25);
+            border-collapse: collapse;
+            border-radius: 5px;
+            overflow: hidden;
+            color: #3b3b3b;
+            width: 10%;
+            font-size: .7em;
+        }
+        
+        #btnUpdate, #btnDelete {
+            float: right;
+        }
+        
+        button:hover {
+        	background-color: #ffffff;
+			border-color: #59b1eb;
+			color: #59b1eb;
+        }
+        
+        #rimg {
+			 width: 50%;
+			 height: 50%;
+			 left: 15%;
+			 
+			}

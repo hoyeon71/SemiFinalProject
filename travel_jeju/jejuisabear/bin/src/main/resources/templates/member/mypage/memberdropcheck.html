@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tyhmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이 페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mypage.css}"/>
+</head>
+<body>
+
+<div id="container">
+	<div id="header">
+		<h1 align="center">---------마이 페이지---------</h1>
+	</div>
+	<div id="mainWrapper" align="center">
+		<div id=navbarWrapper>
+			<button onclick="location.href='memberinfo'">회원정보수정</button>
+			<button onclick="location.href='coninfo'">접속이력확인</button>
+			<button onclick="location.href='myposts'">내가 쓴 게시물</button>
+			<button onclick="location.href='mymatching'">매칭 내역</button>
+			<button onclick="location.href='memberdrop'">회원 탈퇴</button>
+		</div>
+		<div id=contentWrapper>
+			<h3>정말 탈퇴하시겠습니까?</h3>
+			<h3>아래에 비밀번호를 입력하시면 회원 탈퇴 처리가 완료됩니다.</h3>
+			
+			<form action="/member/drop" method="post" id="LoginForm">
+				<label>비밀번호</label>
+				<input type="password" name="password"/>
+				<button type="submit">확인</button>
+			</form>
+			
+			         
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link th:href="@{/css/noticelist.css}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<div th:replace="common/header.html"></div>
+	
+	<h1>notice</h1>
+	<table align="center" border="1">
+		<tr>
+			<th>글 번호</th>
+			<th>작성자</th>
+			<th>제목</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+		
+		<tr id="box1" th:each="notice : ${ notice }">
+			<td th:text="${ notice.noticeNo }"></td>
+			<td th:text="${ notice.noticeAdmin }"></td>
+			
+			<!-- 글 제목 클릭 시 상세페이지로 이동 -->
+			<td id="box2"><a th:href="'../notice/' + ${notice.noticeNo}">[[${notice.noticeTitle}]]</a></td>
+  			
+			<td th:text="${ notice.noticeDate }"></td>
+			<td th:text="${ notice.noticeViews }"></td>
+		</tr>
+	</table>
+	
+			<th:block sec:authorize="hasRole('관리자')">
+		<a th:href="@{../notice/noticeboard}"><button type="button" id="notice">공지사항 작성</button></a>&nbsp;&nbsp;
+			</th:block>
+	
+	<div th:replace="common/footer.html"></div>
+</body>
+</html>

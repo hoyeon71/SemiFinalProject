@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/reviewpage.css}" />
+<title>Review Page</title>
+</head>
+<body>
+	<div id="header" th:replace="common/header.html"></div>
+	<div class="container" role="main">
+	
+		<div id=reviewpage>
+			    <h3 id="Title">[[${review.revTitle}]]</h3>
+			    <h5 id="nickname">[[${review.userNickname}]]</h5>
+			    <hr>
+				<div id=imgbox>
+		    		<img id=rimg th:src="@{ ${ review.pImageUrl } }">
+				</div>
+			    <h4 id="content">[[${review.revContent}]]</h4>
+	    </div>
+	    		<th:block sec:authorize="!hasRole('일반회원')" th:if="@{#authentication.principal.Username} == ${review.usersId}">
+					<form th:action="@{'/travelreview/reviewpage/' + ${review.revNo}}" method="post" id="reviewdelete">
+						<button id="btnDelete" onclick="alert('여행 후기가 삭제되었습니다')">삭제</button>
+					</form>
+				</th:block>
+					<a th:href="@{../travelreview}"><button type="button" id="btnList">목록</button></a>
+	</div>
+		
+</body>
+</html>

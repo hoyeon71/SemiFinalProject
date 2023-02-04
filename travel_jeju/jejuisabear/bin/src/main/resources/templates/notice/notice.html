@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link th:href="@{/css/notice.css}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+	<div th:replace="common/header.html"></div>
+	<br/><br/><br/><br/><br/><br/>
+	<div>
+		<table align="center" border="1">
+		
+			
+	 		<tr>
+				<th>제목</th>
+				<td th:text="${ notice.noticeTitle }"></td>
+				<th>글 번호</th>
+				<td th:text="${ notice.noticeNo }"></td>
+			</tr>
+ 				<th>작성자</th>
+				<td th:text="${ notice.noticeAdmin }"></td>
+			<tr>
+				<th>조회수</th>
+				<td th:text="${ notice.noticeViews }"></td>
+				<th>작성일</th>
+				<td th:text="${ notice.noticeDate }"></td>
+			</tr>
+			<tr>
+				<td style="white-space: pre-line;" th:text="${ notice.noticeInsert }" id="insert"></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div>
+	    <form th:action="@{'/notice/notice/' + ${notice.noticeNo}}" method="post" id="noticedelete">
+	        <input type="hidden" name="_method" value="delete" />
+	        <button onclick="alert('공지사항이 삭제되었습니다.')">삭제</button>
+	    </form>
+	</div>
+
+	<div th:replace="common/footer.html"></div>
+</body>
+</html>

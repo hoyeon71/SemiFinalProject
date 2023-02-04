@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="UTF-8">
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/noticeboard.css}"/>
+	<div th:replace="common/header.html"></div>
+
+<title>Insert title here</title>
+</head>
+<body>
+<br/><br/><br/><br/><br/><br/>
+	<form action="/notice/noticeboard" method="post" align="center" enctype="multipart/form-data">
+	
+		<div class="newnotice">
+			<input type="text" name="noticeTitle" id="newtitle" placeholder="title insert" onfocus="this.placeholder=''" onblur="this.placeholder='title insert.'" autocomplete="off">
+			<br>
+			<input type="text" name="noticeInsert" id="newInsert" placeholder="insert insert" onfocus="this.placeholder=''" onblur="this.placeholder='notice insert.'" autocomplete="off">
+			<br>
+			<input type="text" name="noticeAdmin" id="newAdmin" placeholder="admin insert" onfocus="this.placeholder=''" onblur="this.placeholder='admin insert.'" autocomplete="off">
+			<br>
+			
+			<input type="submit" id="submit" value="확인">
+		</div>
+	</form>
+	
+	<script>
+	function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview').src = "";
+		  }
+		}
+	</script>
+</body>
+</html>

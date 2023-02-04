@@ -1,0 +1,35 @@
+# server port config
+server:
+  port: 8333
+# oracle driver config
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:oracle:thin:@localhost:1521:xe
+    username: C##JEJU_TRAVEL
+    password: JEJU_TRAVEL
+    hikari:
+      auto-commit: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kingmumuop2@gmail.com
+    password: ffjetvsqknntvlay
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  # jpa config
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    database: oracle
+    properties:
+      hibernate:
+        '[format_sql]': true
+
+logging:
+  level:
+    root: error

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+#name1 {
+	text-align: center;
+	font-size: 45px;
+	font-family: 'Domine', serif;
+	text-align: center;
+}
+
+#table {
+	width: 60%;
+	height: 450px;
+	font-size: 20px;
+}
+
+	#tr {
+		text-align: center;
+	}
+	
+	#pn {
+		font-weight: bolder;
+	}
+	
+	#td {
+	background-color: #ffffe0;
+	}
+
+#listBox {
+	border:3px solid black;
+	width: 80%; 
+	height: 80%; 
+	position:relative; 
+	margin : 0 auto;
+}
+
+#searchCondition {
+	font-size: 20px;
+	width: 150px;
+	height: 35px;
+	}
+
+	#searchButton {
+		font-size: 20px;
+		width: 100px;
+		height: 35px;
+	}
+	
+	#name {
+		width: 300px;
+		height: 35px;
+		
+	}
+
+#button {
+	position: relative;
+	left: 65%;
+}
+
+	#button1 {
+		font-size: 20px;
+		width: 150px;
+		height: 50px;
+		color:black;
+		background-color: yellow;
+		}
+		
+	#button2 {
+		font-size: 20px;
+		width: 150px;
+		height: 50px;
+		color: white;
+		background-color: blue;
+		}
+
+.pagingArea {
+	padding: 20px;
+	height: 25px;
+	}
+	
+	#startPage {
+		width: 50px;
+		height: 30px;
+		font-size: 20px;
+	}
+	#prevPage {
+		width: 50px;
+		height: 30px;
+		font-size: 20px;
+	}
+	#nextPage {
+		width: 50px;
+		height: 30px;
+		font-size: 20px;
+	}
+	#maxPage {
+		width: 50px;
+		height: 30px;
+		font-size: 20px;
+	}
+	
+	#nbutton {
+		width: 55px;
+		height: 35px;
+		font-size: 20px;
+		color: red;
+	}
+	
+	#nbutton2 {
+		width: 50px;
+		height: 30px;
+		font-size: 20px;
+	}	
+	

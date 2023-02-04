@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/reviewboard.css}"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="header" th:replace="common/header.html"></div>
+	<form action="/travelreview/reviewboard" method="post" align="center" enctype="multipart/form-data">
+		<div class="newreview">
+			<br>
+			<input type="text" name="placeName" id="placename" placeholder="여행지는 어디인가요" onfocus="this.placeholder=''" onblur="this.placeholder='여행지를 입력해주세요'" autocomplete="off"><br>
+			<input type="text" name="revTitle" id="newtitle" placeholder="제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='제목을 입력해주세요.'" autocomplete="off"><br>
+			<input type="text" name="revContent" id=newcontent placeholder="소중한 추억과 기억을 남겨주세요." onfocus="this.placeholder=''" onblur="this.placeholder='소중한 추억과 기억을 남겨주세요.'" autocomplete="off">
+			<br>
+			
+			<input type="submit" id="submit" value="추억남기기" onclick="alert('추억이 등록되었습니다.')">
+		</div>
+	</form>
+	<script>
+		var today = new Date();
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{ /css/mate_main.css }" />
+</head>
+<body>	
+	<div id="header" th:replace="common/header.html"></div>
+	
+	<section class="notice">
+	  	<div class="page-title">
+	        <div class="container">
+	            <h3>메이트 매칭 게시판</h3>
+		        <th:block sec:authorize="isAnonymous()">	<!-- 인증되지 않은 경우 (로그인 전) -->
+					<h3>로그인이 필요한 서비스입니다.</h3>
+					<button onclick="location.href='/member/login'">로그인</button>
+				</th:block>
+				<th:block sec:authorize="isAuthenticated()">	<!-- 인증된 경우(로그인 후) -->
+					<h3><span th:text="${#authentication.principal.Username}"></span>님 환영합니다.</h3>
+				</th:block>
+	        </div>
+	    </div>
+	    <div id="board-list">
+	        <div class="container">
+	    		<button onclick="location.href='/mate/regist'" id="add">작성하기</button>
+	            <table class="board-table">
+	                <thead>
+	                <tr class="tr-main">
+	                    <th scope="col" class="th-title">번호</th>
+	                    <th scope="col" class="th-title">여행지</th>
+	                    <th scope="col" class="th-title">인원수</th>
+	                    <th scope="col" class="th-title">여행 시간</th>
+	                    <th scope="col" class="th-title">여행 날짜</th>
+	                    <th scope="col" class="th-title">여행 경비</th>
+	                    <th scope="col" class="th-title">조회수</th>
+	                </tr>
+	                </thead>
+	                <tbody>
+	                <tr th:each="place : ${placeList}">
+		                    <td th:text="${place.listNo}" id="listnum"></td>
+		                    <td><a th:href="'../mate/detail/' + ${place.listNo}">[[${place.matePlace}]]</a></td>
+		                    <td th:text="${place.mateMember}"></td>
+		                    <td th:text="${place.mateTime}"></td>
+		                    <td th:text="${place.mateDate}"></td>
+		                    <td th:text="${place.mateCharge}"></td> 
+		                    <td th:text="${place.mateViews}"></td>
+	                </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
+	    <div th:replace="mate/paging.html"></div>
+	    <!-- 검색 폼 -->
+		<div class="search-area" align="center">
+			<form id="loginForm" action="/mate/mate_main" method="get" style="display: inline-block">
+					<select th:with="searchCondition = ${selectCriteria.searchCondition}"
+						id="searchCondition" name="searchCondition">
+						<option value="matePlace" th:selected="${ searchCondition } == 'matePlace'">여행 장소</option>
+						<option value="mateMember" th:selected="${ searchCondition } == 'mateMember'">여행 인원</option>
+					</select> 
+				<input type="hidden" name="currentPage" value="1">
+				<input type="search" id="name" name="searchValue" th:value="${selectCriteria.searchValue}">
+				<button class="btn btn-bs" type="submit">검색하기</button>
+			</form>
+		</div>
+		<div th:replace="common/footer.html"></div>
+</section>
+<script>
+	
+	/* 검색 결과가 없는 경우 */
+	function empty(){
+	    $.ajax({
+	        url: "/mate/mate_main",
+	        success: function(data){
+	            const $list = document.querySelector("#listnum");
+	            if($list == null) {
+	                alert("검색 결과가 없습니다.");
+	            }
+	        }, 
+	        error: function(error){
+	            console.log(error);
+	        }
+	    });
+	};	
+	empty();
+</script>
+</body>
+</html>

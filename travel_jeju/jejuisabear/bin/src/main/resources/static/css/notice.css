@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+	body {
+		position: relative;
+		margin: auto 100px auto 100px;
+	}
+	
+	table {
+	     border-collapse: collapse;
+	     width: 100%;
+	     border: 0;
+	     text-align: center;
+	     
+			margin:auto; 
+	}
+	
+	 th, td {
+	     padding: 10px;
+	     border-style: none;
+/* 	     border-bottom: 1px solid #00A5FF; */
+	     /* text-align: left; */
+	}
+	
+	td {
+		text-align: left;
+	}
+	
+	#insert {
+		text-align: center;
+		/* margin: 50px auto auto auto; */
+		/* text-align: left; */
+	}

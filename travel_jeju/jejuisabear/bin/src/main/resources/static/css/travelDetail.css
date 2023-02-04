@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+#name {
+	position:relative;
+    text-align: center;
+    font-family: 'Domine', serif;
+	text-align: center;
+	font-size: 25px;
+}
+
+#imgbox {
+ position: absolute;
+ width: 70%;
+ height: 50%;
+ left: 15%;
+ 
+}	
+
+#db {
+	position:absolute;
+	top:87%;
+	left:15%; 
+	width: 33%; 
+	height: 40%;
+	padding: 10px;
+	font-family: 'Domine', serif;
+}
+
+	#dbpn {
+		text-align: center;
+		font-size: 40px;
+	}
+	
+	#dbpd {
+		text-align: center;
+		font-size: 30px;
+	}
+
+#map {
+	position:absolute;
+	top: 87%; 
+	right: 15%; 
+	border:3px solid; 
+	width:33%; 
+	height:40%;
+}
+
+#tag {
+	position: relative; 
+	left:70px; 
+	top: 110px;
+}
+
+#review {
+	position:relative; 
+	left:70px; 
+	top: 130px;	
+}
+
+#delete {
+	position: relative;
+	bottom: 90px;
+	left: 90%;
+	font-weight: bolder;
+	font-size: 40px;
+	font-family: 'Domine', serif;
+	background-color: red;
+	color: white;
+}

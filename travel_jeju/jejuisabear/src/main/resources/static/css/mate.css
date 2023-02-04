@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+#headline {
+	background-color:#EBFBFF;
+	width:100%;
+	height:100px;
+	display:flex;
+	justify-content:center;
+	align-items: center;
+}
+
+#headline h1 {
+	color: black;
+}
+
+.tMenu {
+	background-color: #6699ff;
+	display: flex;
+	justify-content:space-between;
+}
+
+button {
+	font-size:15pt;
+}
+
+#textArea {
+	border: 1px black;
+}

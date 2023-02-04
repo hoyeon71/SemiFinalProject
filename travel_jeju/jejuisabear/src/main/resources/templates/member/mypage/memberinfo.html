@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tyhmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이 페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mypage.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="container" style="margin:auto">
+	<div id="header">
+		<h1 align="center">---------마이 페이지---------</h1>
+	</div>
+	<div id="mainWrapper" align="center">
+		<div id=navbarWrapper>
+			<button class="navbutton" onclick="location.href='memberinfo'">회원정보수정</button>
+			<button class="navbutton" onclick="location.href='coninfo'">접속이력확인</button>
+			<button class="navbutton" onclick="location.href='memberdropcheck'">회원 탈퇴</button>
+			<button class="navbutton" onclick="location.href='/'">홈으로</button>
+		</div>
+		<div id=contentWrapper>
+	            <form action="/member/infoedit" method="post">
+                <div class="floatBox">
+                    <label style="font-size: 20px;">비밀번호 : </label>
+                    <input type="password" onkeyup="passCheck()" name="pwd" id="pwd" style="width:200px; height: 20px; margin-right: 10px;"/>
+                    <p id="pwdCheckMessage" style="font-size: 8px; text-decoration: underline;">영문, 숫자만 혼합하여 8자리 이상으로 입력하세요.</p>
+                </div>
+                <br>
+
+                <label style="font-size: 20px;">비밀번호확인 : </label>
+                <input onkeyup="isPassSame()" type="password" name="passwordChk" id="pwdChk" style="width:200px; height: 20px;"/>
+                <p style="font-size: 8px; text-decoration: underline;" id="pwdSameCheckMessage"></p>
+                <br><br>
+
+                <label style="font-size: 20px;">닉네임 : </label>
+                <input type="text" name="nickname" id="nickname" style="width:200px; height: 20px;"/>
+                <button type="button" id="checkNickname">닉네임 중복 체크</button>
+                <br><br>
+
+                <label style="font-size: 20px;">연락처 : </label>
+                <input type="tel" name="phoneNumber" id="phoneNumber" style="width:200px; height: 20px;"/>
+                <br><br>
+
+                <label style="font-size: 20px;">이메일 : </label>
+                <input type="email" name="email" id="email" style="width:200px; height: 20px;"/>
+                <br><br>
+
+                <button type="submit" style="font-size: 20px;" id="submitbutton">정보수정</button>
+                <button style="font-size: 20px;">취소</button>
+            </form>
+		</div>
+	</div>
+</div>
+
+<script>
+let editResultMsg = '[[${resultMsg}]]';
+if(editResultMsg === "success"){
+	alert("회원 정보 변경이 성공적으로 이루어졌습니다.");
+	location.href("/");
+}
+
+function passCheck(){
+	const pwd = document.getElementById('pwd').value;
+	const pwdChkMsg = document.getElementById('pwdCheckMessage');
+	const regex = /^[A-Za-z0-9]{8,16}$/;
+	
+   	if(pwd === ""){
+   			pwdChkMsg.style.color="black";
+   			pwdChkMsg.innerHTML = "영문, 숫자만 혼합하여 8자리 이상으로 입력하세요."    			
+		}else if(!(regex.test(pwd))){
+			pwdChkMsg.style.color="red";
+			pwdChkMsg.innerHTML = "입력한 비밀번호가 기준에 적합하지 않습니다."
+		}else {
+			pwdChkMsg.style.color="green";
+			pwdChkMsg.innerHTML = "입력한 비밀번호가 기준에 부합합니다.."
+		}
+}
+
+function isPassSame(){
+	
+	const pwd = document.getElementById('pwd').value;
+	const pwdChk = document.getElementById('pwdChk').value;
+	const pwdSameChkMsg = document.getElementById('pwdSameCheckMessage');
+	
+	if(pwdChk.length === 0){
+		console.log("얘 작동은 하나?")
+			pwdSameChkMsg.innerHTML = "" ;
+	}else if(pwd === pwdChk){
+		pwdSameChkMsg.style.color="green";
+		pwdSameChkMsg.innerHTML = "비밀번호가 일치합니다.";
+	}else {
+		pwdSameChkMsg.style.color="red";
+		pwdSameChkMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
+	}
+};
+
+const $button2 = document.getElementById("checkNickname");
+$button2.onclick = function () {
+	console.log(document.getElementById('nickname').value);
+
+// 닉네임 중복 체크 ajax 구문
+$.ajax ({
+	  url	: "/member/checkNickname", // 요청이 전송될 URL 주소
+	type	: "GET", // http 요청 방식 (default: ‘GET’)
+	  data  : {newNickname : document.getElementById('nickname').value}, // 요청 시 포함되어질 데이터
+	  contentType : "application/json", // 요청 컨텐트 타입 
+	  dataType    : "json", // 응답 데이터 형식 (명시하지 않을 경우 자동으로 추측) 
+	  success : function(data) {
+		  console.log("서버에서 넘겨받은 데이터 출력 : " + data);
+			if(data === 1){
+		  console.log("중복된 닉네임이 아닙니다. 사용해도 좋습니다.");	 
+		  alert("중복된 닉네임이 아닙니다. 사용해도 좋습니다.")
+			} else if(data === 0){
+			  console.log("중복된 닉네임니다. 다른 닉네임을 사용해주십시오.");
+			  alert("중복된 닉네임니다. 다른 닉네임을 사용해주십시오.")
+			} else {
+			  console.log("통신은 성공했는데 결과값이 1,0 말고 이상한게 넘어옴.");
+			}
+	  
+	  },
+	  error	: function(error) {
+	       console.log("중복 닉네임 체크 실패 실패 실패 실패 실패");
+	  }
+	});
+};
+
+const $button5 = document.getElementById("submit");
+$button5.onclick = function () {
+	const pwd = document.getElementById('pwd').value;
+	const pwdChk = document.getElementById('pwdChk').value;
+	const regex = /^[A-Za-z0-9]{8,16}$/;
+	if(!(regex.test(pwd))){
+		alert("비밀번호는 영문자와 숫자로 8-16자 내외로 작성해주십시오.");
+		return false;
+	}else if(pwd !== pwdChk){
+		alert("비밀번호가 서로 일치하지 않습니다.");
+		return false;
+	}
+}  
+</script>
+</body>
+</html>

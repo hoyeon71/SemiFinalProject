@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>관광지 추가</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/travelRegist.css}"/>
+</head>
+<body>
+	 <div th:include="common/header.html"></div>
+	<h3 id=name1>추가할 관광지의 내용을 입력해주세요.</h3>
+ 	<form action="/travel/travelRegist" method="post" align="center">	<!--부트에서는 default로 잡혀있는 최상위 루트가 '/'다.-->
+		<label id=label1>관광지명 : </label><input id=input1 type="text" name="placeName"><br><br>
+		<label id=label2>관광지 주소 : </label><input id=input2 type="text" name="placeAddress"><br><br>
+		<label id=label3>관광지 설명 : </label><input id=input3 type="text" name="placeDesc"><br><br>
+		<label id=label4>관광지 보이기 여부 : </label>
+			<select id=select name="placeDelStat">
+				<option value="N">N</option>
+				
+			</select><br><br>
+		<input id=submit onclick="alert('관광지가 추가되었습니다')" type="submit" value="전송">
+	</form>
+		<div id=footer th:replace="common/footer.html"></div>
+</body>
+</html>

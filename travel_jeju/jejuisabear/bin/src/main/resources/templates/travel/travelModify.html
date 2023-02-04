@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Travel Modify</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/travelModify.css}"/>
+</head>
+<body>
+<div id=header th:replace="common/header.html"></div>
+	<h1 id=name1>수정할 내용을 입력해주세요.</h1>
+ 	<form action="/travel/travelModify" method="post" align="center">
+		<label id=label1>여행지 번호 : </label><input id=input1 type="number" name="placeNo"><br><br>
+		<label id=label2>수정 할 관광지명 : </label><input id=input2 type="text" name="placeName"><br><br>
+		<label id=label3>수정 할 관광지 주소 : </label><input id=input3 type="text" name="placeAddress"><br><br>
+		<label id=label4>수정 할 관광지 설명 : </label><input id=input4 type="text" name="placeDesc"><br><br>
+		<input id=submit onclick="alert('관광지가 수정되었습니다')" type="submit" value="수정한 내용 전송">
+	</form>
+		<div id=footer th:replace="common/footer.html"></div>
+</body>
+</html>

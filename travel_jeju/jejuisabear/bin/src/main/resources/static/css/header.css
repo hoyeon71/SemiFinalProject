@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@500&display=swap');
+
+   /* a 태그 링크 밑줄+클릭 시 보라색 해제 */
+   a:link {
+      color: black;
+      text-decoration: none;
+   }
+   
+   a:visited {
+      color: black;
+      text-decoration: none;
+   }
+   
+   a:hover {
+      color: black;
+      text-decoration: none;
+   }
+      
+        #title {
+            font-family: 'Domine', serif;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 200px;
+            font-size: 60px;
+            color: blanchedalmond;
+            text-shadow: 2px 4px 2px gray;                                                                     
+        }
+
+        .button {
+            text-align : right;
+            margin: -200px 20px 20px 20px;
+        }
+        
+        #button-join, #button-login, #button-logout{
+            font-family: 'Domine', serif;
+            background-color:#EBFBFF;
+            border:none;
+            border-radius:10px;
+            box-shadow: 0px 0px 2px 2px #EBFBFF;
+            padding: 10px;
+            min-width: 30px;
+            min-height: 30px;
+            color: #AECDFF;
+        }
+       
+        .search {
+            float: right;
+            color: #AECDFF;
+            text-align: center;
+            position: relative;
+            width: 150px;
+            margin: -55px 170px auto auto;
+        }
+
+/*         input {
+            font-family: 'Domine', serif;
+            background-color: #EBFBFF;
+            text-align: center;
+            width: 100%;
+            border: none;
+            border-radius:10px;
+
+            box-shadow: 0px 0px 2px 2px #EBFBFF;
+            padding: 10px 12px;
+            font-size: 14px;
+        } */
+
+        .search img {
+            position : absolute;
+            width: 17px;
+            top: 10px;
+            right: 12px;
+            margin: 0;
+        }

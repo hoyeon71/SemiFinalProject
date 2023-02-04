@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>bear</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet" />
+	<!--  <link th:href="@{staic 이후의 경로}" rel="stylesheet" /> 기본 형식 -->
+<style>
+</style>
+    <title>Jeju is a bear</title>
+</head>
+<body>
+
+    <h1 id="title">jeju is a bear</h1>
+
+	<!-- 헤더 회원가입/로그인 버튼 -->
+    <div class="button">    
+        <th:block sec:authorize="isAnonymous()">
+        <a><button type="button" id="button-join" onclick="location.href='/member/join'">join</button></a>&nbsp;
+        <a><button type="button" id="button-login" onclick="location.href='/member/login'">login</button></a>&nbsp;
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+        	<button type="button" id="button-logout" onclick="location.href='/member/logout'">logout</button>&nbsp;
+        </th:block>
+    </div>
+    
+    <!-- 헤더 검색 부분 -->
+    <div class="search" type="">
+        <input type="text" placeholder="search..">
+        <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+    </div>
+    
+    <!-- <div th:replace="main/paging.html"></div> -->
+
+    <br/>
+    <div class="nav">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&display=swap" rel="stylesheet">
+        <a th:href="@{notice/noticeList}"><button type="button" id="nav01">notice</button></a>&nbsp;&nbsp;
+        <a th:href="@{'mate/mate_main'}"><button type="button" id="nav02">matching</button></a>&nbsp;&nbsp;
+        <button onclick="location.href='/travel/travelList'" id="nav03">travel</button>&nbsp;&nbsp;
+        <a th:href="@{travelreview/travelreview}"><button type="button" id="nav04">review</button></a>&nbsp;&nbsp;
+        <a th:href="@{'member/mypage/coninfo'}"><button type="button" id="nav05">my page</button></a>&nbsp;&nbsp;
+    </div>
+
+    <div class="widget">
+        <div class="weather">
+            <iframe src="https://forecast.io/embed/#lat=33.5007&lon=126.5288&name=제주&color=#ffc261&font=&units=si"></iframe>
+        </div>
+    </div>
+
+    <div class="matching">
+        <h1 id="word01">MATCHING</h1>
+    </div> 
+
+    <br/>
+
+    <div class="best-places">
+        <h3 id="recommended">Recommended destinatios</h3>
+        <div class="image01">
+            <img src="images/추천_성산일출봉.jpg" alt="성산">&nbsp;&nbsp;
+            <img src="images/추천_섭지코지.jpg" alt="섭지코지">&nbsp;&nbsp;
+            <img src="images/추천_우도.jpg" alt="우도">
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="best-review">
+        <h3 id="review">Review</h3>
+        <div class="image02">
+            <img src="images/리뷰_카약.jpg" alt="바다 카약">&nbsp;&nbsp;
+            <img src="images/리뷰_킥보드.jpg" alt="킥보드">&nbsp;&nbsp;
+            <img src="images/리뷰_스쿠버.png" alt="스쿠버">
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <footer><p> 2022. JejuisaBear all rights reserved.</p></footer>
+</body>
+</html>
